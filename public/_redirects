@@ -1,7 +1,8 @@
-# Cloudflare Pages redirect rules
-# Syntax: <source> <destination> <status>
+# Cloudflare Pages redirect rules (path-based only).
 # Docs: https://developers.cloudflare.com/pages/configuration/redirects/
-
-# Canonicalize www subdomain to the apex domain.
-# Splat preserves the path: /now/ -> /now/, /contact/ -> /contact/, etc.
-https://www.vvlfgng.dev/* https://vvlfgng.dev/:splat 301
+#
+# Note: Cloudflare Pages does NOT support host-based redirects in this file.
+# Cross-host redirects (e.g., www.vvlfgng.dev -> vvlfgng.dev) live in
+# functions/_middleware.js as a Pages Function instead.
+#
+# Add path-based rules below as needed in the future.
