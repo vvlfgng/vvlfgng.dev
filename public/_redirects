@@ -1,0 +1,7 @@
+# Cloudflare Pages redirect rules
+# Syntax: <source> <destination> <status>
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Canonicalize www subdomain to the apex domain.
+# Splat preserves the path: /now/ -> /now/, /contact/ -> /contact/, etc.
+https://www.vvlfgng.dev/* https://vvlfgng.dev/:splat 301
