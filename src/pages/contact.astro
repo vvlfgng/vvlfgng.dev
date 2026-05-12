@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import { social } from '../config/site';
+---
+
+<Base title="contact" description="Ways to reach vvlfgng.">
+  <h1>contact</h1>
+
+  <p>the fastest ways to reach me:</p>
+
+  <ul class="contact-list">
+    <li class="contact-row">
+      <span class="contact-platform">email:</span>{' '}
+      <a href="mailto:me@vvlfgng.com">me@vvlfgng.com</a>
+    </li>
+  </ul>
+
+  <ul class="contact-list">
+    {social.map((item) => (
+      <li class="contact-row">
+        <span class="contact-platform">{item.platform}:</span>{' '}
+        {item.status === 'active' ? (
+          <a href={item.href} rel="me noopener" target="_blank">{item.handle}</a>
+        ) : (
+          <span class="contact-handle">{item.handle}</span>
+        )}{' '}
+        {item.status === 'reserved' && <span class="contact-marker">[reserved]</span>}
+      </li>
+    ))}
+  </ul>
+
+  <p class="contact-response">
+    I read everything, but I don't always reply quickly. Please be patient.
+  </p>
+</Base>

@@ -1,0 +1,353 @@
+/* Commit Mono — self-hosted. Source font files in /public/fonts/. License: SIL OFL 1.1 (see /fonts/OFL-commit-mono.txt). */
+@font-face {
+  font-family: 'Commit Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/commit-mono-latin.woff2') format('woff2');
+}
+
+/* -----------------------------------------------------------------------------
+   Design tokens
+   Source of truth: .design/core-pages/DESIGN_TOKENS.css
+   Philosophy: Terminal Editorial — dark monospace, one accent, no animations.
+
+   Usage rules:
+     --accent       interaction only (link hover/focus, /now date stamp, focus ring)
+     --fg-bright    "currently active" (headings, current-page nav, wordmark)
+     --fg-dim       inert/secondary (taglines, [soon]/[reserved], dividers, footer)
+     --fg           default body text
+   ----------------------------------------------------------------------------- */
+:root {
+  /* color */
+  --bg:            #0a0a0a;
+  --fg:            #e8e8e8;
+  --fg-dim:        #888888;
+  --fg-bright:     #ffffff;
+  --accent:        #7faa68;
+  --selection-bg:  #e8e8e8;
+  --selection-fg:  #0a0a0a;
+
+  /* typography */
+  --font-family-base: 'Commit Mono', ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+  --font-feature-settings: 'ss01' on, 'ss02' on, 'cv02' on, 'cv03' on, 'cv06' on;
+  --font-size-base:      1rem;
+  --font-size-h2:        1.3rem;
+  --font-size-h1:        1.6rem;
+  --font-size-wordmark:  clamp(2.5rem, 9vw, 3.75rem);
+  --font-size-small:     0.875rem;
+  --line-height-tight:   1.1;
+  --line-height-base:    1.5;
+  --line-height-heading: 1.25;
+  --letter-spacing-base:     0;
+  --letter-spacing-heading:  0.02em;
+  --letter-spacing-wordmark: 0.04em;
+
+  /* spacing */
+  --gutter:           1.5rem;
+  --space-block:      2rem;
+  --space-section:    4rem;
+  --toc-indent:       1.5rem;
+  --toc-row-gap:      0.25rem;
+
+  /* layout */
+  --max-width:        90ch;
+
+  /* borders & focus */
+  --border-dashed:    1px dashed var(--fg-dim);
+  --focus-ring:       2px solid var(--accent);
+  --focus-offset:     2px;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-family-base);
+  font-feature-settings: var(--font-feature-settings);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  padding: var(--gutter);
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+.shell {
+  max-width: var(--max-width);
+}
+
+a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--accent);
+  background: transparent;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--fg-bright);
+  font-weight: normal;
+  letter-spacing: var(--letter-spacing-heading);
+  line-height: var(--line-height-heading);
+  margin: 1.5em 0 0.5em;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1em;
+}
+
+ul,
+ol {
+  padding-left: 1.5em;
+}
+
+hr {
+  border: none;
+  border-top: var(--border-dashed);
+  margin: 2em 0;
+}
+
+pre {
+  font-family: inherit;
+  margin: 0;
+  white-space: pre;
+}
+
+.site-header {
+  margin-bottom: var(--space-block);
+}
+
+.site-title-wrap {
+  margin: 0;
+}
+
+.site-title {
+  display: inline-block;
+  margin: 0;
+  font-size: var(--font-size-wordmark);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wordmark);
+  color: var(--fg-bright);
+  text-decoration: none;
+}
+
+.site-title:hover,
+.site-title:focus-visible {
+  background: transparent;
+  color: var(--accent);
+}
+
+.site-header__tagline {
+  margin-top: 0.75rem;
+  color: var(--fg-dim);
+}
+
+.nav {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+}
+
+.nav a {
+  color: var(--fg-dim);
+  text-decoration: none;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--accent);
+  background: transparent;
+}
+
+.nav a[aria-current='page'] {
+  color: var(--fg-bright);
+}
+
+.nav-bracket {
+  opacity: 0;
+}
+
+.nav a[aria-current='page'] .nav-bracket,
+.nav a:hover .nav-bracket,
+.nav a:focus-visible .nav-bracket {
+  opacity: 1;
+}
+
+.site-footer {
+  margin-top: var(--space-section);
+  padding-top: 1rem;
+  border-top: var(--border-dashed);
+  color: var(--fg-dim);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+/* -----------------------------------------------------------------------------
+   /contact page: email + hybrid social rows
+   ----------------------------------------------------------------------------- */
+.contact-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 1em;
+}
+
+.contact-row {
+  padding: var(--toc-row-gap) 0;
+}
+
+.contact-platform,
+.contact-handle {
+  color: var(--fg-dim);
+}
+
+.contact-marker {
+  color: var(--fg-dim);
+  font-size: var(--font-size-small);
+  margin-left: 0.25rem;
+}
+
+.contact-response {
+  color: var(--fg-dim);
+  margin-top: var(--space-block);
+}
+
+/* -----------------------------------------------------------------------------
+   /now page: accent-colored date + dim intro
+   ----------------------------------------------------------------------------- */
+.now-updated {
+  color: var(--accent);
+  margin: 0 0 1em;
+}
+
+.now-intro {
+  color: var(--fg-dim);
+}
+
+.now-intro a {
+  color: var(--fg-dim);
+}
+
+.now-intro a:hover,
+.now-intro a:focus-visible {
+  color: var(--accent);
+}
+
+/* -----------------------------------------------------------------------------
+   Home page: TOC + microbio
+   ----------------------------------------------------------------------------- */
+.microbio {
+  color: var(--fg);
+  margin: 0 0 1em;
+}
+
+.toc {
+  margin-top: var(--space-section);
+}
+
+.toc-group {
+  margin-bottom: var(--space-block);
+}
+
+.toc-group__label {
+  color: var(--fg-dim);
+  font-size: var(--font-size-base);
+  font-weight: normal;
+  letter-spacing: var(--letter-spacing-base);
+  line-height: var(--line-height-base);
+  margin: 0 0 0.5em;
+}
+
+.toc-list,
+.toc-sublist {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc-list > li {
+  padding: var(--toc-row-gap) 0;
+}
+
+.toc-sublist {
+  padding-left: var(--toc-indent);
+  margin-top: var(--toc-row-gap);
+}
+
+.toc-subgroup__label {
+  display: inline;
+  color: var(--fg-dim);
+  font-size: var(--font-size-base);
+  font-weight: normal;
+  letter-spacing: var(--letter-spacing-base);
+  line-height: var(--line-height-base);
+  margin: 0;
+}
+
+.toc-item--soon,
+.toc-handle,
+.toc-platform {
+  color: var(--fg-dim);
+}
+
+.toc-marker {
+  color: var(--fg-dim);
+  font-size: var(--font-size-small);
+  margin-left: 0.25rem;
+}
+
+/* -----------------------------------------------------------------------------
+   Site footer link styling (used for "→ contact" link)
+   ----------------------------------------------------------------------------- */
+.site-footer a {
+  color: var(--fg-dim);
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--accent);
+  background: transparent;
+}

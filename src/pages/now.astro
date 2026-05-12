@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import { execSync } from 'node:child_process';
+
+const FALLBACK_DATE = '2026-05-11';
+let lastUpdated: string;
+try {
+  const result = execSync('git log -1 --format=%cs -- src/pages/now.astro', {
+    encoding: 'utf-8',
+    stdio: ['pipe', 'pipe', 'ignore'],
+  }).trim();
+  lastUpdated = result || FALLBACK_DATE;
+} catch {
+  lastUpdated = FALLBACK_DATE;
+}
+---
+
+<Base title="now" description="What vvlfgng is currently working on, reading, and thinking about.">
+  <h1>now</h1>
+
+  <p class="now-updated">// updated {lastUpdated}</p>
+
+  <p class="now-intro">
+    this is a <a href="https://nownownow.com/about" rel="noopener" target="_blank">now page</a> —
+    a snapshot of what I'm focused on right now.
+  </p>
+
+  {/* Pattern: bullet + one short context sentence. Reading bullets stay terse (title + author).
+      Example: <li>Reading <em>Project Hail Mary</em> by Andy Weir.</li> */}
+
+  <h2 id="working-on">working on</h2>
+  <ul>
+    <li>Building this website. v1 just shipped — more sections to come slowly.</li>
+  </ul>
+
+  <h2 id="reading">reading</h2>
+  <ul>
+    <li><em>Heavy Wizardry 101</em> by David Martínez Oliveira</li>
+    <li><em>Bandwidth</em> by Eliot Peper</li>
+  </ul>
+
+  <h2 id="thinking-about">thinking about</h2>
+  <ul>
+    <li>AI's role in the coming labor crunch — boomers are retiring faster than the cohorts behind them can backfill, and automation may end up being a less bad answer than the current discourse allows.</li>
+  </ul>
+
+  <h2 id="listening">listening</h2>
+  <ul>
+    <li><em>Doomed</em> by Maphra</li>
+    <li><em>Give Up The Ghost</em> by Modestep</li>
+    <li>Breakcore (weirdly calms my mind)</li>
+  </ul>
+
+  <h2 id="watching">watching</h2>
+  <ul>
+    <li><em>Ghost in the Shell</em> — slowly working through the whole animated canon, from the 1995 film onward.</li>
+  </ul>
+</Base>

@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import { social } from '../config/site';
+---
+
+<Base>
+  <h1>{'// hi'}</h1>
+
+  <p class="microbio">I write code, create games, and think about the future.</p>
+
+  <p>
+    this is my corner of the internet — slow-growing, an accretion of writing,
+    projects, and the things I'm currently into.
+  </p>
+
+  <nav class="toc" aria-label="site map">
+    <section class="toc-group">
+      <h2 class="toc-group__label">// writing</h2>
+      <ul class="toc-list">
+        <li><span class="toc-item--soon">blog</span> <span class="toc-marker">[soon]</span></li>
+        <li><span class="toc-item--soon">projects</span> <span class="toc-marker">[soon]</span></li>
+        <li><a href="/now">now</a></li>
+      </ul>
+    </section>
+
+    <section class="toc-group">
+      <h2 class="toc-group__label">// gear</h2>
+      <ul class="toc-list">
+        <li>
+          <h3 class="toc-subgroup__label">Setup</h3> <span class="toc-marker">[soon]</span>
+          <ul class="toc-sublist">
+            <li><span class="toc-item--soon">computer</span> <span class="toc-marker">[soon]</span></li>
+            <li><span class="toc-item--soon">keyboard</span> <span class="toc-marker">[soon]</span></li>
+            <li><span class="toc-item--soon">desk</span> <span class="toc-marker">[soon]</span></li>
+            <li><span class="toc-item--soon">infrastructure</span> <span class="toc-marker">[soon]</span></li>
+            <li><span class="toc-item--soon">command line</span> <span class="toc-marker">[soon]</span></li>
+          </ul>
+        </li>
+        <li>
+          <h3 class="toc-subgroup__label">Belongings</h3> <span class="toc-marker">[soon]</span>
+          <ul class="toc-sublist">
+            <li><span class="toc-item--soon">edc</span> <span class="toc-marker">[soon]</span></li>
+            <li><span class="toc-item--soon">phone</span> <span class="toc-marker">[soon]</span></li>
+            <li><span class="toc-item--soon">audio</span> <span class="toc-marker">[soon]</span></li>
+            <li><span class="toc-item--soon">luggage</span> <span class="toc-marker">[soon]</span></li>
+          </ul>
+        </li>
+        <li><span class="toc-item--soon">workout</span> <span class="toc-marker">[soon]</span></li>
+      </ul>
+    </section>
+
+    <section class="toc-group">
+      <h2 class="toc-group__label">// reference</h2>
+      <ul class="toc-list">
+        <li><span class="toc-item--soon">library</span> <span class="toc-marker">[soon]</span></li>
+        <li><span class="toc-item--soon">bookmarks</span> <span class="toc-marker">[soon]</span></li>
+      </ul>
+    </section>
+
+    <section class="toc-group">
+      <h2 class="toc-group__label">// site</h2>
+      <ul class="toc-list">
+        <li><a href="/contact">contact</a></li>
+        <li><span class="toc-item--soon">faq</span> <span class="toc-marker">[soon]</span></li>
+        <li><span class="toc-item--soon">support</span> <span class="toc-marker">[soon]</span></li>
+        <li><span class="toc-item--soon">rss</span> <span class="toc-marker">[soon]</span></li>
+      </ul>
+    </section>
+
+    <section class="toc-group">
+      <h2 class="toc-group__label">// elsewhere</h2>
+      <ul class="toc-list">
+        {social.map((item) => (
+          <li>
+            <span class="toc-platform">{item.platform}:</span>{' '}
+            {item.status === 'active' ? (
+              <a href={item.href} rel="me noopener" target="_blank">{item.handle}</a>
+            ) : (
+              <span class="toc-handle">{item.handle}</span>
+            )}{' '}
+            {item.status === 'reserved' && <span class="toc-marker">[reserved]</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  </nav>
+</Base>
